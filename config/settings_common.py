@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     # my app
     'task_management.apps.TaskManagementConfig',
     'accounts.apps.AccountsConfig',
+    'learning_records.apps.LearningRecordsConfig',
 ]
 
 

@@ -21,11 +21,12 @@
         
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static "css/styles.css" %}" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static "css/mystyle.css" %}">
 
         {% block head %}{% endblock head %}
-
     </head>
-    <body id="page-top">
+
+    <body id="page-top" class="{% block body_class %}{% endblock %}">
         <div id='wrapper'>
             <!-- Navigation-->
             <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -48,6 +49,7 @@
             </nav>
 
             {% block header %}{% endblock header %}
+            {% block contents %}{% endblock contents %}
 
             <!-- Footer-->
             <footer class="bg-light py-5">

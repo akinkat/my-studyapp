@@ -5,6 +5,7 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 load_dotenv(dotenv_path=BASE_DIR / '.env')
 
 
@@ -22,16 +23,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',  # allauth
 
+    # my app
+    'task_management.apps.TaskManagementConfig',
+    'accounts.apps.AccountsConfig',
+    'learning_records.apps.LearningRecordsConfig',
+
     # 3rd party
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'django_bootstrap5',
-    
-    # my app
-    'task_management.apps.TaskManagementConfig',
-    'accounts.apps.AccountsConfig',
-    'learning_records.apps.LearningRecordsConfig',
 ]
 
 

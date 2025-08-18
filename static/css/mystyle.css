@@ -6,17 +6,7 @@ footer {
     margin-top: 6rem;
 }
 
-/* indexページ（背景暗い） */
-body.index-page #mainNav .nav-link,
-body.index-page #mainNav .navbar-brand {
-    color: #fff !important;
-}
-body.index-page #mainNav.navbar-shrink .nav-link,
-body.index-page #mainNav.navbar-shrink .navbar-brand {
-    color: #ccc !important;
-}
-
-/* 白背景ページ */
+/* White background pages */
 body.white-page #mainNav .nav-link,
 body.white-page #mainNav .navbar-brand {
     color: #000 !important;
@@ -25,4 +15,3 @@ body.white-page #mainNav.navbar-shrink .nav-link,
 body.white-page #mainNav.navbar-shrink .navbar-brand {
     color: #333 !important;
 }
-

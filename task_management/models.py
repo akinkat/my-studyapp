@@ -8,6 +8,10 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
 
  
 # Intermediate model (CustomUser, Catogory)
@@ -17,6 +21,8 @@ class UserInterestCategory(models.Model):
 
     class Meta:
         unique_together = ('user', 'category')  # 同じカテゴリを重複登録しない
+        verbose_name = 'User Interest Cateogry'
+        verbose_name_plural = 'User Interest Categories'
 
 
 # User learning goal
@@ -36,6 +42,10 @@ class LearningGoal(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = 'Learning Goal'
+        verbose_name_plural = 'Learning Goals'
     
 
 # Learning main topics
@@ -58,6 +68,10 @@ class LearningMainTopic(models.Model):
 
     def __str__(self):
         return self.main_topic
+    
+    class Meta:
+        verbose_name = 'Learning Main Topic'
+        verbose_name_plural = 'Learning Main Topics'
     
 
 # Learning sub topics
@@ -83,3 +97,7 @@ class LearningSubTopic(models.Model):
 
     def __str__(self):
         return f'{self.main_topic.main_topic} - {self.sub_topic}'
+
+    class Meta:
+        verbose_name = 'Learning Sub Topic'
+        verbose_name_plural = 'Learning Sub Topics'

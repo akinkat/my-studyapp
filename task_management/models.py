@@ -13,15 +13,41 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
- 
+# User-created category list
+class UserCategory(models.Model):
+    user = models.ForeignKey(
+        'accounts.CustomUser', 
+        on_delete=models.CASCADE,
+        related_name=('user_categories'))
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'name'], 
+                name='unique_user_category',
+                )
+        ]
+        verbose_name = 'User-created Category'
+        verbose_name_plural = 'User-created Categories'
+
+
 # Intermediate model (CustomUser, Catogory)
 class UserInterestCategory(models.Model):
     user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     class Meta:
-        unique_together = ('user', 'category')  # 同じカテゴリを重複登録しない
-        verbose_name = 'User Interest Cateogry'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'category'], 
+                name='unique_user_interest_category',
+                )
+        ]
+        verbose_name = 'User Interest Category'
         verbose_name_plural = 'User Interest Categories'
 
 

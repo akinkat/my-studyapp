@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'task_management.apps.TaskManagementConfig',
     'accounts.apps.AccountsConfig',
     'learning_records.apps.LearningRecordsConfig',
+    'ai_support.apps.AiSupportConfig',
 
     # 3rd party
     'allauth',

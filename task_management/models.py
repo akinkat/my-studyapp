@@ -94,6 +94,8 @@ class LearningSubTopic(models.Model):
         ('completed', 'Completed')
     ]
 
+    user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)
+    learning_goal = models.ForeignKey(LearningGoal, on_delete=models.CASCADE)
     main_topic = models.ForeignKey(
         LearningMainTopic, 
         related_name='sub_topics',
@@ -110,6 +112,12 @@ class LearningSubTopic(models.Model):
 
     def __str__(self):
         return f'{self.main_topic.main_topic} - {self.sub_topic}'
+    
+    def save(self, *args, **kwargs):
+        if self.main_topic:
+            self.learning_goal = self.main_topic.learning_goal
+            self.user = self.main_topic.learning_goal.user
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Learning Sub Topic'

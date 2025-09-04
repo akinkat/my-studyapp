@@ -4,7 +4,14 @@ from django.db import models
 
 # Category list
 class Category(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=255)
+    is_global = models.BooleanField(default=False)
+    owner = models.ForeignKey(
+        'accounts.CustomUser',
+        null=True, blank=True,
+        on_delete=models.CASCADE,
+        related_name='own_categories',
+    )
 
     def __str__(self):
         return self.name
@@ -13,26 +20,6 @@ class Category(models.Model):
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
 
-# User-created category list
-class UserCategory(models.Model):
-    user = models.ForeignKey(
-        'accounts.CustomUser', 
-        on_delete=models.CASCADE,
-        related_name=('user_categories'))
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-    
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(
-                fields=['user', 'name'], 
-                name='unique_user_category',
-                )
-        ]
-        verbose_name = 'User-created Category'
-        verbose_name_plural = 'User-created Categories'
 
 
 # Intermediate model (CustomUser, Catogory)

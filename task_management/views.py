@@ -2,6 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View, generic
 
+from .models import LearningGoal
+
 
 # Top screen
 class IndexView(generic.TemplateView):
@@ -16,8 +18,18 @@ class InterestCategoryListView(LoginRequiredMixin, generic.ListView):
     def get_queryset(self):
         return self.request.user.interest_categories.all()
     
+class AddInterestCategoryView(LoginRequiredMixin, generic.FormView):
+    pass
+    
 
 # List of Learning Goal
 class LearningGoalListView(LoginRequiredMixin, generic.ListView):
     template_name = 'task_management/learning_goal_list.html'
-    
+    context_object_name = 'learning_goals'
+
+    def get_queryset(self):
+        cateogy_id = self.kwargs['category_id']
+        return LearningGoal.objects.filter(
+            user=self.request.user,
+            category_id=cateogy_id,
+        )

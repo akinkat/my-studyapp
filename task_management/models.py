@@ -53,9 +53,15 @@ class LearningGoal(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def actual_study_time(self):
+        return self.sessions.aggregate(
+            total=models.Sum('time_spent')
+        )['total'] or 0
+
     def __str__(self):
         return self.title
-    
+
     class Meta:
         verbose_name = 'Learning Goal'
         verbose_name_plural = 'Learning Goals'
@@ -91,7 +97,7 @@ class LearningMainTopic(models.Model):
 class LearningSubTopic(models.Model):
     STATUS = [
         ('incomplete', 'Incomplete'),
-        ('completed', 'Completed')
+        ('completed', 'Completed'),
     ]
 
     user = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE)

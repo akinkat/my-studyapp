@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}TOP|ASCENSION{% endblock title %}
+{% block title %}Top Page|ASCENSION{% endblock title %}
 
 {% block header %}
 <!-- Masthead-->
@@ -15,7 +15,7 @@
             <div class="col-lg-8 align-self-baseline">
                 <p class="text-white-75 mb-5">This is an AI-based learning support service!</p>
                 {% if user.is_authenticated %}
-                    <a class="btn btn-primary btn-xl mb-2" href="#">HOME</a><br>
+                    <a class="btn btn-primary btn-xl mb-2" href="{% url "task_management:interest_categories" %}">Interest Categories</a><br>
                 {% else %}
                     <div class='text-center'>
                         <a class="btn btn-primary btn-xl mb-2" href="{% url "account_login" %}">LOG IN</a><br>
